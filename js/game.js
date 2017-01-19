@@ -569,6 +569,7 @@ window.Game = (function () {
       this.state.objects = remainingObjects;
     },
 
+
     /**
      * Проверка статуса текущего уровня.
      */
