@@ -46,9 +46,6 @@ for (var i = 0; i < times.length; i++) {
         ctx.fillStyle = 'rgb(0,' + '0' + ',' + Math.floor(255-42.5*i) + ')';
       }
     }
-}
-
-    }
   }
 
   ctx.fillText = (name + ':' + time.toFixed(0), histoHeight + dropWidth * i, 80 + histoHeight +20);
