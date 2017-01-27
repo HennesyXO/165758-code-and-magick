@@ -39,7 +39,7 @@ wizardEyes.addEventListener('click', function () {
 var fireball = document.querySelector('.setup-fireball-wrap');
 var fireballColors = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-fireballWrap.addEventListener('click', function () {
+fireball.addEventListener('click', function () {
   var fireballNumber = Math.floor(Math.random() * fireballColors.length);
-  fireball.style.background = fireball[fireballNumber];
+  fireball.style.background = fireballColors[fireballNumber];
 });
