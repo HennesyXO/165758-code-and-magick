@@ -3,16 +3,64 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var setupUserName = document.querySelector('.setup-user-name');
+var submitBtn = document.querySelector('.setup-submit');
 
 setupOpen.addEventListener('click', function (e) {
   e.preventDefault();
   setup.classList.remove('invisible');
 });
 
+var ENTER_KEY_CODE = 13;
+var ESC_KEY_CODE = 27;
+
+// function pressEnter() {
+//   e.preventDefault();
+//   setup.classList.remove('invisible');
+// }
+
+// function pressESC(e) {
+//   e.preventDefault();
+//   setup.classList.add('invisible');
+// }
+// Когда иконка пользователя в фокусе, то диалог настройки должен открываться по нажатию кнопки ENTER
+setupOpen.addEventListener('keydown', function (e) {
+  if (e.keyCode === ENTER_KEY_CODE) {
+    e.preventDefault();
+    setup.classList.remove('invisible');
+  }
+});
+// Когда диалог открыт, то клавиша ESC должна закрывать диалог.
+setupOpen.addEventListener('keydown', function (e) {
+  if (e.keyCode === ESC_KEY_CODE) {
+    e.preventDefault();
+    setup.classList.add('invisible');
+  }
+});
+
 setupClose.addEventListener('click', function (e) {
   e.preventDefault();
   setup.classList.add('invisible');
 });
+// Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога.
+setupClose.addEventListener('keydown', function (e) {
+  if (e.keyCode === ENTER_KEY_CODE) {
+    e.preventDefault();
+    setup.classList.add('invisible');
+  }
+});
+
+submitBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  setup.classList.add('invisible');
+});
+
+submitBtn.addEventListener('keydown', function (e) {
+  if (e.keyCode === ENTER_KEY_CODE) {
+    e.preventDefault();
+    setup.classList.add('invisible');
+  }
+});
+ // && e.keyCode === ENTER_KEY_CODE
 
 setupUserName.required = true;
 setupUserName.maxLength = 50;
