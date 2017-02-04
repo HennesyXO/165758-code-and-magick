@@ -13,54 +13,45 @@ setupOpen.addEventListener('click', function (e) {
 var ENTER_KEY_CODE = 13;
 var ESC_KEY_CODE = 27;
 
-// function pressEnter() {
-//   e.preventDefault();
-//   setup.classList.remove('invisible');
-// }
-
-// function pressESC(e) {
-//   e.preventDefault();
-//   setup.classList.add('invisible');
-// }
-// Когда иконка пользователя в фокусе, то диалог настройки должен открываться по нажатию кнопки ENTER
-setupOpen.addEventListener('keydown', function (e) {
-  if (e.keyCode === ENTER_KEY_CODE) {
-    e.preventDefault();
-    setup.classList.remove('invisible');
-  }
-});
-// Когда диалог открыт, то клавиша ESC должна закрывать диалог.
-setupOpen.addEventListener('keydown', function (e) {
+function closeOnEscape(e) {
   if (e.keyCode === ESC_KEY_CODE) {
     e.preventDefault();
     setup.classList.add('invisible');
   }
-});
+}
 
-setupClose.addEventListener('click', function (e) {
-  e.preventDefault();
-  setup.classList.add('invisible');
-});
-// Если диалог открыт и фокус находится на крестике, то нажатие клавиши ENTER приводит к закрытию диалога.
-setupClose.addEventListener('keydown', function (e) {
+function closeOnEnter(e) {
   if (e.keyCode === ENTER_KEY_CODE) {
     e.preventDefault();
     setup.classList.add('invisible');
   }
-});
+}
 
-submitBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  setup.classList.add('invisible');
-});
-
-submitBtn.addEventListener('keydown', function (e) {
+function openOnEnter(e) {
   if (e.keyCode === ENTER_KEY_CODE) {
     e.preventDefault();
-    setup.classList.add('invisible');
+    setup.classList.remove('invisible');
   }
-});
- // && e.keyCode === ENTER_KEY_CODE
+}
+
+function closeOnMouse(e) {
+  e.preventDefault();
+  setup.classList.add('invisible');
+}
+
+// Когда иконка пользователя в фокусе, то диалог настройки должен открываться по нажатию кнопки ENTER
+setupOpen.addEventListener('keydown', openOnEnter);
+// Когда диалог открыт, то клавиша ESC должна закрывать диалог.
+setupOpen.addEventListener('keydown', closeOnEscape);
+
+setupClose.addEventListener('click', closeOnMouse);
+
+setupClose.addEventListener('keydown', closeOnEnter);
+
+submitBtn.addEventListener('click', closeOnMouse);
+
+submitBtn.addEventListener('keydown', closeOnEnter);
+ // =========================================
 
 setupUserName.required = true;
 setupUserName.maxLength = 50;
