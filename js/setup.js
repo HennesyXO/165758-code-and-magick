@@ -19,43 +19,44 @@ function closeOnEscape(e) {
     setup.classList.add('invisible');
   }
 }
+function showSetupElement() {
+  setup.classList.remove('invisible');
+}
+
+function hideSetupElement() {
+  setup.classList.add('invisible');
+}
 
 function closeOnEnter(e) {
   if (e.keyCode === ENTER_KEY_CODE) {
     e.preventDefault();
-    setup.classList.add('invisible');
+    hideSetupElement();
   }
 }
 
 function openOnEnter(e) {
   if (e.keyCode === ENTER_KEY_CODE) {
     e.preventDefault();
-    setup.classList.remove('invisible');
+    showSetupElement();
   }
 }
 
 function closeOnMouse(e) {
   e.preventDefault();
-  setup.classList.add('invisible');
+  hideSetupElement();
 }
 
 // Когда иконка пользователя в фокусе, то диалог настройки должен открываться по нажатию кнопки ENTER
 setupOpen.addEventListener('keydown', openOnEnter);
-// Когда диалог открыт, то клавиша ESC должна закрывать диалог.
-setupOpen.addEventListener('keydown', closeOnEscape);
-
+setup.addEventListener('keydown', closeOnEscape);
 setupClose.addEventListener('click', closeOnMouse);
-
 setupClose.addEventListener('keydown', closeOnEnter);
-
 submitBtn.addEventListener('click', closeOnMouse);
-
 submitBtn.addEventListener('keydown', closeOnEnter);
  // =========================================
 
 setupUserName.required = true;
 setupUserName.maxLength = 50;
-setupUserName.value = '';
 
 var wizard = document.querySelector('#wizard');
 var wizardCoat = wizard.querySelector('#wizard-coat');
