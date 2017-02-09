@@ -5,6 +5,7 @@ var setupClose = setup.querySelector('.setup-close');
 var setupUserName = document.querySelector('.setup-user-name');
 var submitBtn = document.querySelector('.setup-submit');
 
+
 setupOpen.addEventListener('click', function (e) {
   e.preventDefault();
   setup.classList.remove('invisible');
