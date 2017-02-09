@@ -3,20 +3,61 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var setupUserName = document.querySelector('.setup-user-name');
+var submitBtn = document.querySelector('.setup-submit');
+
 
 setupOpen.addEventListener('click', function (e) {
   e.preventDefault();
   setup.classList.remove('invisible');
 });
 
-setupClose.addEventListener('click', function (e) {
-  e.preventDefault();
+var ENTER_KEY_CODE = 13;
+var ESC_KEY_CODE = 27;
+
+function closeOnEscape(e) {
+  if (e.keyCode === ESC_KEY_CODE) {
+    e.preventDefault();
+    setup.classList.add('invisible');
+  }
+}
+function showSetupElement() {
+  setup.classList.remove('invisible');
+}
+
+function hideSetupElement() {
   setup.classList.add('invisible');
-});
+}
+
+function closeOnEnter(e) {
+  if (e.keyCode === ENTER_KEY_CODE) {
+    e.preventDefault();
+    hideSetupElement();
+  }
+}
+
+function openOnEnter(e) {
+  if (e.keyCode === ENTER_KEY_CODE) {
+    e.preventDefault();
+    showSetupElement();
+  }
+}
+
+function closeOnMouse(e) {
+  e.preventDefault();
+  hideSetupElement();
+}
+
+// Когда иконка пользователя в фокусе, то диалог настройки должен открываться по нажатию кнопки ENTER
+setupOpen.addEventListener('keydown', openOnEnter);
+setup.addEventListener('keydown', closeOnEscape);
+setupClose.addEventListener('click', closeOnMouse);
+setupClose.addEventListener('keydown', closeOnEnter);
+submitBtn.addEventListener('click', closeOnMouse);
+submitBtn.addEventListener('keydown', closeOnEnter);
+ // =========================================
 
 setupUserName.required = true;
 setupUserName.maxLength = 50;
-setupUserName.value = '';
 
 var wizard = document.querySelector('#wizard');
 var wizardCoat = wizard.querySelector('#wizard-coat');
